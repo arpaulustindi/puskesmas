@@ -83,14 +83,20 @@ return [
     | into the admin panel.
     |
     */
-
+    'auth' => [
+        'guard' => env('FILAMENT_AUTH_GUARD', 'filament'),
+        'pages' => [
+            'login' => \Chiiya\FilamentAccessControl\Http\Livewire\Login::class,
+        ],
+    ],
+    /*
     'auth' => [
         'guard' => env('FILAMENT_AUTH_GUARD', 'web'),
         'pages' => [
             'login' => \Filament\Http\Livewire\Auth\Login::class,
         ],
     ],
-
+    */
     /*
     |--------------------------------------------------------------------------
     | Pages
