@@ -23,6 +23,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        FilamentThemes::register(function($path) {
+            // Using Vite:
+            return app(\Illuminate\Foundation\Vite::class)('resources/' . $path);
+            // Using Mix:
+            return app(\Illuminate\Foundation\Mix::class)($path);
+            // Using asset()
+            return asset($path);
+        });
     }
 }
