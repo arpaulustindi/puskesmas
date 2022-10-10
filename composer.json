@@ -7,11 +7,13 @@
     "require": {
         "php": "^8.0.2",
         "chiiya/filament-access-control": "^1.5",
+        "doctrine/dbal": "^3.4",
         "filament/filament": "^2.0",
         "filament/forms": "^2.0",
         "filament/notifications": "^2.0",
         "filament/tables": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
+        "haruncpi/laravel-id-generator": "^1.1",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
