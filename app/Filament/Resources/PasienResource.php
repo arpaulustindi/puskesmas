@@ -13,6 +13,8 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
+use Filament\Forms\Components\Radio;
+use Filament\Forms\Components\Select;
 class PasienResource extends Resource
 {
     protected static ?string $model = Pasien::class;
@@ -24,41 +26,85 @@ class PasienResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('id')
-                    ->required()
-                    ->maxLength(255),
+                    ->disabled()
+                    ->maxLength(255)
+                    ->label('ID DIbuat Otomatis'),
                 Forms\Components\TextInput::make('nik')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->label('Nomor Induk Kependudukan (KTP)'),
                 Forms\Components\TextInput::make('nama')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->label('Nama'),
                 Forms\Components\DatePicker::make('tanggal_lahir')
                     ->required(),
-                Forms\Components\TextInput::make('gender')
+                Radio::make('gender')
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('agama')
+                    ->options([
+                        'Laki-Laki' => 'Laki-Laki',
+                        'Perempuan' => 'Perempuan',
+                    ])
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('perkawinan')
+                    ->label('Gender'),
+                Select::make('agama')
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('pekerjaan')
+                    ->options([
+                        'Kristen' => 'Kristen',
+                        'Katholik' => 'Katholik',
+                        'Islam' => 'Islam',
+                        'Hindu' => 'Hindu',
+                        'Budha' => 'Budha',
+                        'Konghucu' => 'Konghucu',
+                        'Aliran Kepercayaan' => 'Aliran Kepercayaan',
+                    ])
+                    ->label('Agama'),
+                Radio::make('perkawinan')
                     ->required()
-                    ->maxLength(255),
+                    ->options([
+                        'Kawin' => 'Kawin',
+                        'Belum Kawin' => 'Belum Kawin',
+                        'Lainnya' => 'Lainnya',
+                    ])
+                    ->required()
+                    ->label('Perkawinan'),
+                Select::make('pekerjaan')
+                    ->required()
+                    ->options([
+                        'ASN' => 'ASN',
+                        'Petani' => 'Petani',
+                        'Nelayan' => 'Nelayan',
+                        'Swasat' => 'Swasat',
+                        'Wiraswasta' => 'Wiraswasta',
+                        'Pelajar/Mahasiswa' => 'Pelajar/Mahasiswa',
+                        'TNI/Polri' => 'TNI/Polri',
+                        'Lainnya' => 'Lainnya',
+                    ])
+                    ->label('Pekerjaan'),
                 Forms\Components\TextInput::make('hp')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('alamat')
                     ->maxLength(255),
-                Forms\Components\TextInput::make('faskes')
+                Select::make('faskes')
                     ->required()
-                    ->maxLength(255),
+                    ->options([
+                        'Tidak Ada/Bayar Sendiri' => 'Tidak Ada/Bayar Sendiri',
+                        'JKN/KIS' => 'JKN/KIS',
+                        'Jamkesda' => 'Jamkesda',
+                        'Askes' => 'Askes',
+                        'BPJS Mandiri' => 'BPJS Mandiri',
+                        'Lainnya' => 'Lainnya',
+                    ])
+                    ->label('Faskes'),
                 Forms\Components\TextInput::make('nomor_faskes')
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->label('Nomor Faskes (Apabila Ada)'),
                 Forms\Components\TextInput::make('kk')
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->label('Nama Kepala Keluarga'),
                 Forms\Components\TextInput::make('kk_alamat')
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->label('Alamat Kepala Keluarga'),
             ]);
     }
 
